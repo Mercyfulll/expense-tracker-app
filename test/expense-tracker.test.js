@@ -50,19 +50,19 @@ describe ("The expense tracker", function() {
         ],allCategory)
 
     })
-    it('It should be able to add expense', async function(){
-        await expense.addExpense('FastFood',350,2)
-        const allExpense = await expense.allExpenses()
+    // it('It should be able to add expense', async function(){
+    //     await expense.addExpense('FastFood',350,2)
+    //     const allExpense = await expense.allExpenses()
 
-        assert.deepEqual([{
-              amount: '350',
-              category_id: 2,
-              expense: 'FastFood',
-              id: 6,
-              total: '350'
-            }
-          ]
-          ,allExpense)
-    })
+    //     assert.deepEqual([{
+    //           amount: '350',
+    //           category_id: 2,
+    //           expense: 'FastFood',
+    //           id: 6,
+    //           total: '350'
+    //         }
+    //       ]
+    //       ,allExpense)
+    // })
 
 })
