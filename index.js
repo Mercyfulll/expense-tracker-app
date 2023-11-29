@@ -33,13 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.get('/',async function(req,res){
-
-    const category = await db.manyOrNone(`SELECT * FROM category`)
-    
-
-    res.render('index', {category}) 
-})
+app.get('/',)
 
 app.get('/expense',async function(req,res){
     res.render('expense')
