@@ -1,5 +1,35 @@
 <div class="container">
     <h2>Add expense</h2>
-    <label for="">Description</label>
-    <input type="text" class="description">
+    <div class="add">
+        <label for="">Description</label>
+        <input type="text" class="description"><br>
+        <label for="">Amount</label>
+        <input type="text" class="Amount"><br>
+        <label>Category</label>
+        <select class="category" name="category">
+        <option>Choose</option>  
+        {{#each category}}
+        <option value="">{{this.category_type}}</option>
+        {{/each}}
+        </select><br>
+        <button type="submit">Add expense</button>
+    </div>
+    <h3>Total expenses</h3><span></span>
+    <p>Expense summary per category</p>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Totals</th>
+        </tr>
+        <tr>
+            <td>Qinisane</td>
+            <td>Lesedi</td>
+        </tr>
+        <tr>
+            <td>Qinisane</td>
+            <td>Lesedi</td>
+        </tr>
+    </table>
+
+    <a href="/expense">View expenses</a>
 </div>
