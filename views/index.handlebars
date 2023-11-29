@@ -1,19 +1,22 @@
 <div class="container">
     <h2>Add expense</h2>
-    <div class="add">
-        <label for="">Description</label>
-        <input type="text" class="description"><br>
-        <label for="">Amount</label>
-        <input type="text" class="Amount"><br>
-        <label>Category</label>
-        <select class="category" name="category">
-        <option>Choose</option>  
-        {{#each category}}
-        <option value="">{{this.category_type}}</option>
-        {{/each}}
-        </select><br>
-        <button type="submit">Add expense</button>
-    </div>
+    <form action="/expense" method="post">
+        <div class="add">
+            <label for="">Description</label>
+            <input type="text" class="description" name="description"><br>
+            <label for="">Amount</label>
+            <input type="text" class="Amount" name="amount"><br>
+            <label>Category</label>
+            <select class="category" name="category">
+            <option>Choose</option>  
+            {{#each category}}
+            <option value={{this.id}}>{{this.category_type}}</option>
+            {{/each}}
+            </select><br>
+            <button type="submit">Add expense</button>
+        </div>
+     </form>
+    
     <h3>Total expenses</h3><span></span>
     <p>Expense summary per category</p>
     <table>

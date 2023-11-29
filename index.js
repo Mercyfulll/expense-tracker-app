@@ -3,15 +3,18 @@ import {engine} from "express-handlebars";
 import bodyParser from "body-parser";
 import pgPromise from "pg-promise";
 import session from "express-session"
-import expenseTracker from './expensetracker.js';
+import expenseTracker from './service/expensetracker.js';
+import routes from './routes/routes.js';
 
 const app = express()
 const pgp = pgPromise()
+
 
 const connectionString = process.env.DATABSE || 'postgres://crmqbido:l_5NI8cn3s3fJd2KZbkLiMbTXqx9V8_V@flora.db.elephantsql.com/crmqbido'
 
 const db = pgp(connectionString)
 const expense = expenseTracker(db)
+const route = routes(expense) 
 
 // use the express.static built-in middleware to serve static file 'css'
 app.use(express.static('public'))
@@ -33,11 +36,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.get('/',)
+app.get('/', route.home)
 
-app.get('/expense',async function(req,res){
-    res.render('expense')
-})
+app.post('/expense', route.addExpense)
 
 
 const PORT = process.env.PORT || 3000
