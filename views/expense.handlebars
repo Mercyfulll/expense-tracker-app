@@ -7,11 +7,13 @@
         <th>Category</th>
         <th>Tools</th>
     </tr>
+    {{#each expenditure}}
     <tr>
         <td>{{this.expense}}</td>
-        <td>{{this.category}}</td>
-        <td></td>
+        <td>{{this.category_type}}</td>
+        <td>{{this.total}}</td>
     </tr>
+    {{/each}}
 </table>
 
 <a href="/">back home</a>

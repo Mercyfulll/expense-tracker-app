@@ -45,3 +45,9 @@ button{
     padding: 0.4em;
     border-radius: 15px;
 }
+.error{
+    font-size: large;
+    color:crimson;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}

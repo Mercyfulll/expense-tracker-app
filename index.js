@@ -2,6 +2,7 @@ import express from 'express';
 import {engine} from "express-handlebars";
 import bodyParser from "body-parser";
 import pgPromise from "pg-promise";
+import flash from "express-flash";
 import session from "express-session"
 import expenseTracker from './service/expensetracker.js';
 import routes from './routes/routes.js';
@@ -31,13 +32,16 @@ app.use(session({
     saveUninitialized: true
   }));
 
+// configure flash
+app.use(flash());
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
 app.get('/', route.home)
-
+app.get('/expense', route.expenditure)
 app.post('/expense', route.addExpense)
 
 
