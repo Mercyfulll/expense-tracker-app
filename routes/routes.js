@@ -5,7 +5,7 @@ export default function routes(expense){
         // Getting all data from pre-populated table cateory
         const category = await expense.getAllFromCategory()
 
-       
+       //Render all expenses on
         
         //Rendering home page and taking the object we get from SQL to the template 
         res.render('index', {category,expenditure}) 
@@ -37,10 +37,26 @@ export default function routes(expense){
 
         res.render('expense',{expenditure})
     }
+    // A route to filter expenses by category 
+    async function filter(req,res){
+        const dropDown = req.body.filter
+        
+        const byFilter = await expense.expensesForCategory(dropDown)
+        
+
+        res.render('index',{byFilter})
+
+    }
+
+    async function removeExpense(expenseId){
+        await db.none(`DELETE FROM expense WHERE expense.id = $1`,[expenseId]);
+    }
     return{
         home,
         addExpense,
-        expenditure
+        expenditure,
+        filter,
+        removeExpense
     
     }
 }

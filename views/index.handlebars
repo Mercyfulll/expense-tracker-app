@@ -23,19 +23,28 @@
     
     <h3>Total expenses</h3><span></span>
     <p>Expense summary per category</p>
+    <label>Filter by Category </label>
+    <form action="/filter" method="post" class="filterForm">
+    <select class="filter" name="filter" onchange="submit()";>
+            <option value="">Choose</option>
+             {{#each category}}
+            <option value={{this.id}}>{{this.category_type}}</option>
+            {{/each}}
+    </select>
+    </form>
     <table>
         <tr>
             <th>Category</th>
-            <th>Totals</th>
+            <th>Amounts</th>
         </tr>
+        {{#each byFilter}}
         <tr>
-            <td>Qinisane</td>
-            <td>Lesedi</td>
+            <td>{{this.expense}}</td>
+            <td>{{this.amount}}</td>
         </tr>
-        <tr>
-            <td>Qinisane</td>
-            <td>Lesedi</td>
-        </tr>
+        {{/each}}
+    
+        
     </table>
 
     <a href="/expense">View expenses</a>

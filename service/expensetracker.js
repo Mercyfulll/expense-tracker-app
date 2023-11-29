@@ -10,22 +10,37 @@ export default function expenseTracker(db){
         await db.none(`INSERT INTO expense (expense, amount, total, category_id) VALUES ($1, $2, $2, $3)`, [expense, amount, categoryId]);
     }
     
-    //Get all data that must vbe rendered on all expense screen by selecting certain columns and joining tables
+    //Get all data that must be rendered on all expense screen by selecting certain columns and joining tables
     async function allExpenses(){
         return await db.manyOrNone(`
         SELECT expense.expense, category.category_type, expense.total
         FROM expense
         JOIN category ON category.id = expense.category_id;`);
     }
-
-    async function expensesForCategory(categotyId){
-        return await db.manyOrNone(`SELECT * FROM expense WHERE category_id = $1`,[categotyId])
+    // Filter by category 
+    async function expensesForCategory(categoryId){
+        
+        return await db.manyOrNone(`SELECT * FROM expense WHERE category_id = $1`,[categoryId])
     }
-
+    async function deleteExpense(expenseId){
+        await db.none(`DELETE FROM expense WHERE expense.id = $1`,[expenseId])
+    }
+    async function allExpenses(){
+        return await db.manyOrNone(`SELECT * FROM expense`)
+    } 
+    
+    async function groupCategories(){
+        return db.oneOrNone(`SELECT DISTINCT category.category_type
+        FROM expense
+        JOIN category ON category.id = expense.category_id; `)
+    }
     return{
         getAllFromCategory,
         addExpense,
         allExpenses,
-        expensesForCategory
+        expensesForCategory,
+        // totalForCategory,
+        deleteExpense,
+        groupCategories
     }
 }

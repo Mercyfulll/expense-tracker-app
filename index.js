@@ -43,7 +43,7 @@ app.use(bodyParser.json())
 app.get('/', route.home)
 app.get('/expense', route.expenditure)
 app.post('/expense', route.addExpense)
-
+app.post('/filter', route.filter)
 
 const PORT = process.env.PORT || 3000
 
